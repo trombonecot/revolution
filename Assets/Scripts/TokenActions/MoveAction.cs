@@ -16,7 +16,7 @@ public class MoveAction : Action
         SelectionListener.SetSelectionEnabled(false);
         currentToken = UiManager.GetActiveToken();
 
-        UiManager.Instance.StartCoroutine(WaitForTerrainClick());
+        GameManager.Instance.StartCoroutine(WaitForTerrainClick());
     }
 
     private IEnumerator WaitForTerrainClick()
@@ -39,7 +39,7 @@ public class MoveAction : Action
                     if (agent != null)
                     {
                         agent.SetDestination(hit.point);
-                        currentToken.isBlocked = true;
+                        currentToken.SpendAction();
                         UiManager.SetActiveToken(null);
                     }
                     else

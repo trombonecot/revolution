@@ -31,7 +31,13 @@ public class PlayerSide : MonoBehaviour
 
         for (int i = 0; i < gameObjects.Length; i++)
         {
-            gameObjects[i].GetComponent<Token>().isBlocked = status;
+            Token token = gameObjects[i].GetComponent<Token>();
+            token.isBlocked = status;
+
+            if (status == false)
+            {
+                token.RestoreActions();
+            }
         }
     }
 }

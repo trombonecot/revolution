@@ -148,3 +148,8 @@ MonoBehaviour:
   buttonActions:
   - {fileID: 2152404126375717104, guid: 9f275f4fdd6e90440ae0342a7bebcb28, type: 3}
   - {fileID: 2536625550884061778, guid: b63340b514c7d20489365abbe5237a4f, type: 3}
+  - {fileID: -374411497212911007, guid: 564ed2eb5b33a90479f5d6e6d165304e, type: 3}
+  numActions: 1
+  maxNumActions: 1
+  health: 100
+  maxHealth: 100

@@ -9,7 +9,7 @@ public class RecruitAction : Action
     {
         BaseToken currentToken = (BaseToken)UiManager.GetActiveToken();
 
-        if (currentToken.spawnLocation != null && InfluenceManager.GetCurrentInfluence() - cost > 0)
+        if (currentToken && currentToken.spawnLocation != null && InfluenceManager.GetCurrentInfluence() - cost > 0)
         {
             Instantiate(
                 recruit,

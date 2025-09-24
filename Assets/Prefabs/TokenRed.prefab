@@ -147,3 +147,7 @@ MonoBehaviour:
   isBlocked: 0
   buttonActions:
   - {fileID: 2152404126375717104, guid: 9f275f4fdd6e90440ae0342a7bebcb28, type: 3}
+  numActions: 1
+  maxNumActions: 1
+  health: 100
+  maxHealth: 100

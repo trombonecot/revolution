@@ -28,7 +28,7 @@ public class InfluenceAction : Action
         float increment = (nearbyCount > 0) ? randomValue / nearbyCount : randomValue;
 
         InfluenceManager.IncrementIncrement(increment);
-        currentToken.isBlocked = true;
+        currentToken.SpendAction();
         UiManager.SetActiveToken(null);
     }
 }
