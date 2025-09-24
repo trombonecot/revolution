@@ -1695,7 +1695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c2c029cd474cd14c822c4680f3790ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isIA: 0
+  isIA: 1
   tokenName: ComputerToken
 --- !u!4 &1233519063
 Transform:

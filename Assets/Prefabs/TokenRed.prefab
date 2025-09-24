@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1077788530236891348}
   - component: {fileID: 2874788383364135502}
   - component: {fileID: -8628747912205487561}
-  - component: {fileID: 883815710919216836}
+  - component: {fileID: 982518309311501219}
   m_Layer: 0
   m_Name: TokenRed
   m_TagString: ComputerToken
@@ -132,7 +132,7 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &883815710919216836
+--- !u!114 &982518309311501219
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,13 +141,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4882962022652130962}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdd5978c67b41f34f8aabe2e32ed3402, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e5d6bae8692d8e4d914a6a73505b0a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isBlocked: 0
-  buttonActions:
-  - {fileID: 2152404126375717104, guid: 9f275f4fdd6e90440ae0342a7bebcb28, type: 3}
+  buttonActions: []
   numActions: 1
   maxNumActions: 1
   health: 100
   maxHealth: 100
+  detectedEnemy: {fileID: 0}

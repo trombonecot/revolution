@@ -34,6 +34,11 @@ public class TurnManager : MonoBehaviour
             playerSideIndex++;
         }
         sides[playerSideIndex].UnBlockTokens();
+
+        if (sides[playerSideIndex].isIA)
+        {
+            sides[playerSideIndex].RunIA();
+        }
     }
 
 }

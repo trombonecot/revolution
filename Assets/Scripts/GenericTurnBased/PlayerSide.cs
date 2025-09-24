@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerSide : MonoBehaviour
 {
@@ -10,9 +11,27 @@ public class PlayerSide : MonoBehaviour
         
     }
 
-    void Update()
+    public void RunIA()
     {
-        
+        StartCoroutine(IARoutine());
+    }
+
+    private IEnumerator IARoutine()
+    {
+        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag(tokenName);
+
+        foreach (GameObject go in gameObjects)
+        {
+            EnemyToken token = go.GetComponent<EnemyToken>();
+            if (token != null && !token.isBlocked)
+            {
+                token.DoSomething();
+            }
+
+            yield return new WaitForSeconds(1f);
+        }
+
+        GameManager.GoToNextTurn();
     }
 
     public void BlockTokens()
