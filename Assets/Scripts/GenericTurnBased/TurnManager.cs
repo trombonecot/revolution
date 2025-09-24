@@ -17,8 +17,13 @@ public class TurnManager : MonoBehaviour
 
     public void NextTurn()
     {
-       currentTurn++;
+        currentTurn++;
 
+        if (playerSideIndex == 0 )
+        {
+            InfluenceManager.IncrementInfluence();
+        }
+  
         sides[playerSideIndex].BlockTokens();
         if (playerSideIndex == sides.Length - 1)
         {

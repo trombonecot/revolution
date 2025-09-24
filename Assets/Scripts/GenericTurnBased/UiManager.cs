@@ -6,6 +6,8 @@ public class UiManager : MonoBehaviour
 {
     public TMP_Text turnNumber;
     public TMP_Text sideName;
+    public TMP_Text influence;
+    public TMP_Text influenceIncrement;
     public Button nextTurn;
 
     public Token activeToken = null;
@@ -63,18 +65,23 @@ public class UiManager : MonoBehaviour
         }
 
         this.turnNumber.text = GameManager.GetTurnNumer().ToString();
+        this.influence.text = InfluenceManager.GetCurrentInfluence().ToString();
+        this.influenceIncrement.text = InfluenceManager.GetCurrentInfluenceIncrement().ToString();
 
-
-        for (int i = 0; i < buttons.Length; i++)
+        if (!buttonsInit)
         {
-            if (!buttonsInit)
+            for (int i = 0; i < buttons.Length; i++)
             {
+
                 InitializeButton(i);
             }
-            else if (!activeToken)
+        } else if (!activeToken)
+        {
+            for (int i = 0; i < buttons.Length; i++)
             {
                 ResetButton(i);
             }
+            
         }
     }
 

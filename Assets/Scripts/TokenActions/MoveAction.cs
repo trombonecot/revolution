@@ -31,9 +31,6 @@ public class MoveAction : Action
 
         if (Physics.Raycast(ray, out hit))
         {
-            Debug.Log("colliding");
-            Debug.Log(hit.collider.gameObject.tag);
-            Debug.Log(currentToken.name);
             if (hit.collider.gameObject.tag == "Taulell")
             {
                 if (currentToken != null)
