@@ -27,10 +27,12 @@ public class Token : MonoBehaviour
 
     public void RecieveHarm(int value)
     {
+        Debug.Log($"Recieved {value} harm on {this.name}");
         this.health -= value;
 
         if (this.health <= 0 )
         {
+            Debug.Log($"{this.name} is dead");
             Destroy(this.gameObject);
         }
     }

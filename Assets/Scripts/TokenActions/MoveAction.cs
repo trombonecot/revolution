@@ -6,12 +6,8 @@ public class MoveAction : Action
 {
 
     private Token currentToken;
-    void Start()
-    {
-        actionName = "Move now!";
-    }
 
-    public override void OnClick()
+    public override void OnActivate(Token active, Token target)
     {
         SelectionListener.SetSelectionEnabled(false);
         currentToken = UiManager.GetActiveToken();

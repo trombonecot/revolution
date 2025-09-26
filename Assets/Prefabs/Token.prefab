@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1077788530236891348}
   - component: {fileID: 2874788383364135502}
   - component: {fileID: -4536291827704734138}
-  - component: {fileID: -3055940392980828131}
+  - component: {fileID: -561774313525435979}
   m_Layer: 0
   m_Name: Token
   m_TagString: PlayerToken
@@ -132,7 +132,7 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &-3055940392980828131
+--- !u!114 &-561774313525435979
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4882962022652130962}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdd5978c67b41f34f8aabe2e32ed3402, type: 3}
+  m_Script: {fileID: 11500000, guid: d5683e5c68954f0458ef06f75a29f97b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isBlocked: 0
@@ -149,7 +149,17 @@ MonoBehaviour:
   - {fileID: 2152404126375717104, guid: 9f275f4fdd6e90440ae0342a7bebcb28, type: 3}
   - {fileID: 2536625550884061778, guid: b63340b514c7d20489365abbe5237a4f, type: 3}
   - {fileID: -374411497212911007, guid: 564ed2eb5b33a90479f5d6e6d165304e, type: 3}
+  - {fileID: 8143924054134559957, guid: 8ad37aafcfa69fc4e8feee688a6090d2, type: 3}
   numActions: 1
   maxNumActions: 1
   health: 100
   maxHealth: 100
+  level: 1
+  body: 50
+  mind: 50
+  charisma: 50
+  loyalty: 50
+  shadow: 50
+  proficencies: []
+  flaws: []
+  immunities: []

@@ -45,5 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionName: Recruit agent
+  activeHability: 0
+  targetHability: 4
   recruit: {fileID: 4882962022652130962, guid: a3e5a0a921009e546ace440d764f1832, type: 3}
-  cost: 3
+  cost: 10

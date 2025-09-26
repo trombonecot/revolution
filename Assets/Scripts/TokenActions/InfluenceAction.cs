@@ -2,33 +2,31 @@ using UnityEngine;
 
 public class InfluenceAction : Action
 {
-    public override void OnClick()
+    public PersonaToken counterInfluencer;
+
+    public override void OnActivate(Token active, Token target)
     {
-        Token currentToken = UiManager.GetActiveToken();
-        if (currentToken == null)
-        {
-            Debug.LogWarning("InfluenceAction: No active token found.");
-            return;
-        }
 
         GameObject[] computerTokens = GameObject.FindGameObjectsWithTag("ComputerToken");
 
-        int nearbyCount = 0;
-        foreach (GameObject token in computerTokens)
+        foreach (GameObject enemy in computerTokens)
         {
-            float distance = Vector3.Distance(currentToken.transform.position, token.transform.position);
+            float distance = Vector3.Distance(active.transform.position, enemy.transform.position);
             if (distance <= 3f)
             {
-                nearbyCount++;
+                counterInfluencer = enemy.GetComponent<PersonaToken>();
             }
         }
 
-        float randomValue = Random.Range(0.5f, 1f);
+        PersonaToken influencer = (PersonaToken)active;
 
-        float increment = (nearbyCount > 0) ? randomValue / nearbyCount : randomValue;
+        if (!counterInfluencer || SuccessManager.IsSuccessful(influencer, counterInfluencer, this))
+        {
+            InfluenceManager.IncrementIncrement(influencer.getInfluenceScore());
 
-        InfluenceManager.IncrementIncrement(increment);
-        currentToken.SpendAction();
+        }
+
+        active.SpendAction();
         UiManager.SetActiveToken(null);
     }
 }

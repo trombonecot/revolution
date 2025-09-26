@@ -45,3 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionName: Influence
+  activeHability: 3
+  targetHability: 3
+  counterInfluencer: {fileID: 0}

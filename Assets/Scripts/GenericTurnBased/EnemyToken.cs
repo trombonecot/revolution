@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyToken : Token
+public class EnemyToken : PersonaToken
 {
     public virtual void DoSomething()
     {

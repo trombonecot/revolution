@@ -94,7 +94,7 @@ public class UiManager : MonoBehaviour
             buttons[i].GetComponentInChildren<TMP_Text>().text = action.actionName;
             buttons[i].gameObject.SetActive(true);
 
-            buttons[i].onClick.AddListener(() => action.OnClick());
+            buttons[i].onClick.AddListener(() => action.OnActivate(activeToken, null));
             buttonsInit = true;
         }
         else

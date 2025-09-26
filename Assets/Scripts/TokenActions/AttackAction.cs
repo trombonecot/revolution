@@ -4,19 +4,41 @@ using System.Collections;
 
 public class AttackAction : Action
 {
+    private PersonaToken currentToken;
 
-    private Token currentToken;
     void Start()
     {
         actionName = "Attack";
     }
 
-    public override void OnClick()
+    public override void OnActivate(Token active, Token target)
     {
         SelectionListener.SetSelectionEnabled(false);
-        currentToken = UiManager.GetActiveToken();
+        currentToken = (PersonaToken)active;
 
-        GameManager.Instance.StartCoroutine(WaitForEnemyClick());
+        if (target)
+        {
+            this.Attack((PersonaToken)target);
+        } else
+        {
+            GameManager.Instance.StartCoroutine(WaitForEnemyClick());
+        }
+    }
+
+    public void Attack(PersonaToken enemyToken)
+    {
+        if (SuccessManager.IsSuccessful(currentToken, enemyToken, this))
+        {
+            enemyToken.RecieveHarm(currentToken.getAttackScore());
+        }
+        else
+        {
+            Debug.Log("Enemy dodged the attack");
+        }
+
+
+        currentToken.SpendAction();
+        UiManager.SetActiveToken(null);
     }
 
     private IEnumerator WaitForEnemyClick()
@@ -38,15 +60,13 @@ public class AttackAction : Action
                     NavMeshAgent agent = currentToken.GetComponent<NavMeshAgent>();
                     if (agent != null)
                     {
-                        Token enemyToken = hit.collider.gameObject.GetComponent<Token>();
+                        PersonaToken enemyToken = hit.collider.gameObject.GetComponent<PersonaToken>();
                         if (enemyToken != null)
                         {
                             float distance = Vector3.Distance(currentToken.transform.position, enemyToken.transform.position);
                             if (distance < 1f)
                             {
-                                enemyToken.RecieveHarm(50);
-                                currentToken.SpendAction();
-                                UiManager.SetActiveToken(null);
+                                this.Attack(enemyToken);
                             }
                             else
                             {

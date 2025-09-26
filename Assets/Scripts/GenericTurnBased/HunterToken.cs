@@ -3,76 +3,89 @@ using UnityEngine.AI;
 
 public class HunterToken : EnemyToken
 {
-    public Token detectedEnemy;
+    public PersonaToken detectedEnemy;
+
+    private DetectAction detectAction;
+    private AttackAction attackAction;
+
+    void Start()
+    {
+        detectAction = GetComponent<DetectAction>();
+        attackAction = GetComponent<AttackAction>();
+    }
 
     public override void DoSomething()
     {
-        if (detectedEnemy)
+        if (detectedEnemy && Vector3.Distance(detectedEnemy.transform.position, transform.position) < 5f)
         {
             this.Hunt();
         } else
         {
-            this.Detect();
+            detectedEnemy = null;
+            detectAction.OnActivate(this, null);
+            detectedEnemy = detectAction.detectedTarget;
+            detectAction.detectedTarget = null;
+
+            if (!detectedEnemy)
+            {
+                if (Random.Range(0,10) < 5 )
+                {
+                    this.MoveAround();
+                } else if (SuccessManager.IsSuccessfulInHabilityScore(this, HabilitiesEnum.CHARISMA))
+                {
+                    InfluenceManager.SubstractInfluence(this.getInfluenceScore());
+                }
+            }
         }
         SpendAction();
     }
 
-    private void Detect()
+    private void MoveAround()
     {
-        float radius = 6f;
-
-        Collider[] hits = Physics.OverlapSphere(transform.position, radius);
-
-        Debug.Log($"{name} detected with roll {hits.Length}");
-
-        foreach (Collider hit in hits)
+        NavMeshAgent agent = GetComponent<NavMeshAgent>();
+        if (agent != null)
         {
-            Token player = hit.GetComponent<Token>();
-            if (player != null)
+            Vector3 randomDirection = Random.insideUnitSphere * 6f;
+            randomDirection += transform.position;
+
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(randomDirection, out hit, 3f, NavMesh.AllAreas))
             {
-                float distance = Vector3.Distance(player.transform.position, transform.position);
-
-                if (distance > 0f) 
-                {
-                    float detectionChance = (1f / distance) * 100f;
-                    int roll = Random.Range(1, 101);
-
-                    if (roll < detectionChance)
-                    {
-                        detectedEnemy = player;
-                        Debug.Log($"{name} detected {player.name} with roll {roll} < {detectionChance}");
-                        return;
-                    }
-                }
+                agent.stoppingDistance = 0f;
+                agent.SetDestination(hit.position);
             }
         }
-
-        // If no one detected, log it (optional)
-        Debug.Log($"{name} detected no players.");
+        else
+        {
+            Debug.LogWarning("Active token has no NavMeshAgent!");
+        }
     }
-
 
     private void Hunt()
     {
         if (detectedEnemy != null)
         {
-            float distance = Vector3.Distance(detectedEnemy.transform.position, this.gameObject.transform.position);
-
-            if (distance > 1)
+            NavMeshAgent agent = GetComponent<NavMeshAgent>();
+            if (agent != null)
             {
-                NavMeshAgent agent = GetComponent<NavMeshAgent>();
-                if (agent != null)
+                agent.stoppingDistance = 0.5f;
+
+                float distance = Vector3.Distance(detectedEnemy.transform.position, transform.position);
+
+                if (distance > agent.stoppingDistance)
                 {
                     agent.SetDestination(detectedEnemy.transform.position);
                 }
                 else
                 {
-                    Debug.LogWarning("Active token has no NavMeshAgent!");
+                    attackAction.OnActivate(this, detectedEnemy);
                 }
-            } else
+            }
+            else
             {
-                detectedEnemy.RecieveHarm(50);
+                Debug.LogWarning("Active token has no NavMeshAgent!");
             }
         }
     }
+
 }
