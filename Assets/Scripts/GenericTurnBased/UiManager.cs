@@ -8,6 +8,7 @@ public class UiManager : MonoBehaviour
     public TMP_Text sideName;
     public TMP_Text influence;
     public TMP_Text influenceIncrement;
+    public TMP_Text health;
     public Button nextTurn;
 
     public Token activeToken = null;
@@ -39,6 +40,14 @@ public class UiManager : MonoBehaviour
         }
 
         Instance.activeToken = token;
+
+        if (token != null)
+        {
+            Instance.health.text = $"{token.health}/{token.maxHealth}";
+        } else
+        {
+            Instance.health.text ="";
+        }
     }
     public static Token GetActiveToken()
     {
