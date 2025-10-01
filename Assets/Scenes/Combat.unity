@@ -273,7 +273,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 73}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &143373900
@@ -294,7 +294,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 0
+  m_Spacing: 10
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -806,7 +806,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1884097114}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9962677
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1254,7 +1254,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Fi torn
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1390,7 +1390,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Confirmar carta
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1515,7 +1515,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 545823298}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1622,6 +1622,73 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556592259}
   m_CullTransparentMesh: 1
+--- !u!1 &585399512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 585399513}
+  - component: {fileID: 585399514}
+  m_Layer: 5
+  m_Name: UiCombatController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &585399513
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585399512}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1844130984}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &585399514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585399512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f9e60ef573572c448c08359126ab1a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combatManager: {fileID: 1254457919}
+  playerCharactersContainer: {fileID: 1977899859}
+  enemyCharactersContainer: {fileID: 890984746}
+  characterDisplayPrefab: {fileID: 3048075027109919714, guid: f8cc61cf0e6275e46acc30b3e09664e7, type: 3}
+  handContainer: {fileID: 143373899}
+  cardDisplayPrefab: {fileID: 6015578126831222846, guid: f972317257c66ed429edb143b98848af, type: 3}
+  confirmCardSelectionButton: {fileID: 131914979}
+  skipAbilityPhaseButton: {fileID: 255647572}
+  endTurnButton: {fileID: 815101267}
+  roundText: {fileID: 1101007903}
+  phaseText: {fileID: 373943119}
+  instructionText: {fileID: 2046048077}
+  combatLogScroll: {fileID: 1480026875}
+  combatLogText: {fileID: 910401768}
+  abilitySelectionPanel: {fileID: 378645585}
+  abilityButtonsContainer: {fileID: 803898117}
+  abilityButtonPrefab: {fileID: 6669563742295520447, guid: b8d462bd00773514481c1f891341c2e4, type: 3}
+  victoryPanel: {fileID: 556592259}
+  defeatPanel: {fileID: 1048635456}
 --- !u!1 &591699818
 GameObject:
   m_ObjectHideFlags: 0
@@ -2404,6 +2471,120 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1101007901}
   m_CullTransparentMesh: 1
+--- !u!1 &1254457918
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1254457920}
+  - component: {fileID: 1254457919}
+  m_Layer: 0
+  m_Name: CombatManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1254457919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254457918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3d078e3be27ee04da5b74fab96e1eff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxRounds: 5
+  currentRound: 0
+  playerTeam:
+  - characterName: Jugador 1
+    maxHP: 10
+    currentHP: 0
+    speed: 0
+    isAlive: 1
+    uniqueAbility: {fileID: 11400000, guid: 619e8755db10c2b4ebba5d7f9fdeca8d, type: 2}
+    abilityUsed: 0
+    activeStatus: 0
+    statusDuration: 0
+    assignedCard: {fileID: 0}
+    tempAttackMod: 0
+    tempDefenseMod: 0
+    canUseAbility: 1
+    characterSprite: {fileID: 0}
+  enemyTeam:
+  - characterName: Enemic 1
+    maxHP: 10
+    currentHP: 0
+    speed: 0
+    isAlive: 1
+    uniqueAbility: {fileID: 11400000, guid: 60c9649af64cfe640b685f997d0d14ed, type: 2}
+    abilityUsed: 0
+    activeStatus: 0
+    statusDuration: 0
+    assignedCard: {fileID: 0}
+    tempAttackMod: 0
+    tempDefenseMod: 0
+    canUseAbility: 1
+    characterSprite: {fileID: 0}
+  playerDeck:
+  - {fileID: 11400000, guid: f882fd557c528484fbb5be26bf691443, type: 2}
+  - {fileID: 11400000, guid: f882fd557c528484fbb5be26bf691443, type: 2}
+  - {fileID: 11400000, guid: c75c3715efa3fb940863e615675165dd, type: 2}
+  - {fileID: 11400000, guid: c75c3715efa3fb940863e615675165dd, type: 2}
+  - {fileID: 11400000, guid: 76ca3dd67370c7344b033fe88f7507e7, type: 2}
+  - {fileID: 11400000, guid: 798466b75a0d9f2498cf21591f207fe9, type: 2}
+  - {fileID: 11400000, guid: f882fd557c528484fbb5be26bf691443, type: 2}
+  - {fileID: 11400000, guid: c75c3715efa3fb940863e615675165dd, type: 2}
+  - {fileID: 11400000, guid: 76ca3dd67370c7344b033fe88f7507e7, type: 2}
+  - {fileID: 11400000, guid: 798466b75a0d9f2498cf21591f207fe9, type: 2}
+  playerHand:
+  - {fileID: 11400000, guid: f882fd557c528484fbb5be26bf691443, type: 2}
+  - {fileID: 11400000, guid: c75c3715efa3fb940863e615675165dd, type: 2}
+  - {fileID: 11400000, guid: 76ca3dd67370c7344b033fe88f7507e7, type: 2}
+  - {fileID: 11400000, guid: 798466b75a0d9f2498cf21591f207fe9, type: 2}
+  - {fileID: 11400000, guid: f882fd557c528484fbb5be26bf691443, type: 2}
+  - {fileID: 11400000, guid: f882fd557c528484fbb5be26bf691443, type: 2}
+  - {fileID: 11400000, guid: f882fd557c528484fbb5be26bf691443, type: 2}
+  - {fileID: 11400000, guid: f882fd557c528484fbb5be26bf691443, type: 2}
+  - {fileID: 11400000, guid: f882fd557c528484fbb5be26bf691443, type: 2}
+  - {fileID: 11400000, guid: f882fd557c528484fbb5be26bf691443, type: 2}
+  handSize: 10
+  isPlayerTurn: 1
+  waitingForCardSelection: 0
+  waitingForAbilityActivation: 0
+  OnCombatLog:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRoundStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRoundEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnCombatEnd:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!4 &1254457920
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254457918}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 734.5, y: 253.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1301077567
 GameObject:
   m_ObjectHideFlags: 0
@@ -2540,7 +2721,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Passar de fer servir habilitat
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3284,6 +3465,7 @@ RectTransform:
   - {fileID: 378645586}
   - {fileID: 556592260}
   - {fileID: 1048635457}
+  - {fileID: 585399513}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3596,7 +3778,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0000049329456}
+  m_AnchoredPosition: {x: 0, y: 0.16256255}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1660057539 &9223372036854775807
@@ -3607,3 +3789,4 @@ SceneRoots:
   - {fileID: 1516019903}
   - {fileID: 1844130984}
   - {fileID: 1301077570}
+  - {fileID: 1254457920}

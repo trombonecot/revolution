@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56f0025f0fd7b4441b83b91aae74b8a9, type: 3}
   m_Name: HumanMele2
   m_EditorClassIdentifier: 
-  cardName: Espasa arriscada
+  cardName: Daga
   cardType: 0
   attack: 3
   defense: 2

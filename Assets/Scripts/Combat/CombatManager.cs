@@ -340,6 +340,8 @@ public class CombatManager : MonoBehaviour
         character.assignedCard = card;
         playerHand.Remove(card);
 
+        Debug.Log(card.description);
+
         // Comprovar si s'han assignat cartes a tots els personatges vius
         if (playerTeam.Where(c => c.isAlive).All(c => c.assignedCard != null))
         {

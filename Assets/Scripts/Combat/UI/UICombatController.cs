@@ -104,10 +104,12 @@ public class UICombatController : MonoBehaviour
 
     void CreateHandDisplays()
     {
+
         foreach (var card in combatManager.playerHand)
         {
             GameObject go = Instantiate(cardDisplayPrefab, handContainer);
             UICardDisplay display = go.GetComponent<UICardDisplay>();
+
             display.SetCard(card);
             display.OnCardClicked = OnCardClicked;
             handCardDisplays.Add(display);
@@ -191,6 +193,7 @@ public class UICombatController : MonoBehaviour
         }
         else if (currentPhase == CombatPhase.AbilityActivation)
         {
+            Debug.Log("character clicked");
             ShowAbilityPanel(display);
         }
     }
@@ -266,6 +269,8 @@ public class UICombatController : MonoBehaviour
             AddCombatLog("Aquesta habilitat ja s'ha utilitzat o no està disponible!");
             return;
         }
+
+
 
         abilitySelectionPanel.SetActive(true);
 
