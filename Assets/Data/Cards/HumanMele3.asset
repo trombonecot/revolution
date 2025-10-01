@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56f0025f0fd7b4441b83b91aae74b8a9, type: 3}
+  m_Name: HumanMele3
+  m_EditorClassIdentifier: 
+  cardName: Espasa parada
+  cardType: 0
+  attack: 1
+  defense: 2
+  statusEffect: 0
+  cardImage: {fileID: 0}
+  description: "Un atac r\xE0pid amb espasa"
