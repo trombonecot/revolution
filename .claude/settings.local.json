@@ -13,7 +13,8 @@
       "mcp__UnityMCP__apply_text_edits",
       "mcp__UnityMCP__get_sha",
       "mcp__UnityMCP__manage_prefabs",
-      "Bash(python:*)"
+      "Bash(python:*)",
+      "Bash(mkdir:*)"
     ],
     "deny": [],
     "ask": []
