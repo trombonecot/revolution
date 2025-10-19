@@ -20,8 +20,10 @@ namespace HexGame
         private bool isSelected = false;
         private bool isMoving = false;
         private Vector3 targetPosition;
+        private Vector3 previousPosition;
 
         public bool IsMoving => isMoving;
+        public Vector3 PreviousPosition => previousPosition;
 
         private void Awake()
         {
@@ -83,6 +85,9 @@ namespace HexGame
         /// <param name="hexCenterPosition">The center position of the hex to move to</param>
         public void MoveTo(Vector3 hexCenterPosition)
         {
+            // Store previous position before moving
+            previousPosition = transform.position;
+
             targetPosition = hexCenterPosition;
             targetPosition.y = transform.position.y; // Maintain current height
             isMoving = true;

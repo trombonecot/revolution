@@ -14,8 +14,11 @@ namespace HexGame
         private Renderer hexRenderer;
         private Material hexMaterial;
         private Color originalColor;
+        private Enemy enemyOnTile;
 
         public Vector3 CenterPosition => transform.position;
+        public bool HasEnemy => enemyOnTile != null;
+        public Enemy EnemyOnTile => enemyOnTile;
 
         private void Awake()
         {
@@ -98,6 +101,28 @@ namespace HexGame
                     hexMaterial.color = color;
                 }
             }
+        }
+
+        /// <summary>
+        /// Registers an enemy on this hex tile
+        /// </summary>
+        /// <param name="enemy">The enemy to place on this tile</param>
+        public void SetEnemy(Enemy enemy)
+        {
+            enemyOnTile = enemy;
+            Debug.Log($"<color=magenta>HexTile at {CenterPosition} now has enemy: {enemy.gameObject.name}</color>");
+        }
+
+        /// <summary>
+        /// Clears the enemy from this hex tile
+        /// </summary>
+        public void ClearEnemy()
+        {
+            if (enemyOnTile != null)
+            {
+                Debug.Log($"<color=magenta>HexTile at {CenterPosition} clearing enemy: {enemyOnTile.gameObject.name}</color>");
+            }
+            enemyOnTile = null;
         }
     }
 }

@@ -84,13 +84,43 @@ namespace HexGame
                 return;
             }
 
-            Debug.Log($"Moving {selectedUnit.gameObject.name} to hex at {hex.CenterPosition}");
+            Debug.Log($"<color=cyan>MoveUnitToHex called for tile at {hex.CenterPosition}</color>");
+            Debug.Log($"<color=cyan>Hex.HasEnemy = {hex.HasEnemy}, Hex.EnemyOnTile = {hex.EnemyOnTile?.gameObject.name ?? "null"}</color>");
 
-            // Initiate movement
-            selectedUnit.MoveTo(hex.CenterPosition);
+            // Check if the hex has an enemy
+            if (hex.HasEnemy)
+            {
+                Debug.Log($"<color=yellow>ENEMY DETECTED on hex at {hex.CenterPosition}! Initiating combat...</color>");
 
-            // Clear selection (unit will be deselected in Unit.MoveTo)
-            selectedUnit = null;
+                // Trigger combat instead of moving
+                if (CombatTransitionManager.Instance != null)
+                {
+                    Debug.Log("<color=green>CombatTransitionManager found! Starting combat...</color>");
+                    CombatTransitionManager.Instance.StartCombat(
+                        selectedUnit,
+                        hex.EnemyOnTile,
+                        hex.CenterPosition,
+                        selectedUnit.transform.position
+                    );
+                }
+                else
+                {
+                    Debug.LogError("<color=red>CombatTransitionManager not found in scene! Please add it to the scene.</color>");
+                }
+
+                // Clear selection
+                selectedUnit = null;
+            }
+            else
+            {
+                Debug.Log($"<color=white>No enemy on tile. Moving {selectedUnit.gameObject.name} to hex at {hex.CenterPosition}</color>");
+
+                // Initiate movement (no enemy on tile)
+                selectedUnit.MoveTo(hex.CenterPosition);
+
+                // Clear selection (unit will be deselected in Unit.MoveTo)
+                selectedUnit = null;
+            }
         }
 
         /// <summary>

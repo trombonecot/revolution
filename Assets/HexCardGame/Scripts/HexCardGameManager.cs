@@ -44,7 +44,52 @@ public class HexCardGameManager : MonoBehaviour
         nextTurnButton.onClick.AddListener(OnNextTurnClicked);
         restartButton.onClick.AddListener(RestartGame);
 
-        // Show card selection panel at the start
+        // Check if combat was triggered from hex game
+        if (HexGame.CombatTransitionManager.Instance != null)
+        {
+            // Load data from transition manager
+            LoadFromHexGame();
+        }
+        else
+        {
+            // Standalone mode - show card selection panel at the start
+            ShowCardSelection();
+        }
+    }
+
+    void LoadFromHexGame()
+    {
+        HexGame.CombatTransitionManager transitionManager = HexGame.CombatTransitionManager.Instance;
+
+        Debug.Log($"<color=cyan>===== LOADING FROM HEX GAME =====</color>");
+        Debug.Log($"<color=cyan>TransitionManager.EnemyLevel = {transitionManager.EnemyLevel}</color>");
+        Debug.Log($"<color=cyan>TransitionManager.EnemyMaxHP = {transitionManager.EnemyMaxHP}</color>");
+
+        // Set player HP from hex game
+        player.maxHP = transitionManager.PlayerMaxHP;
+        player.CurrentHP = transitionManager.PlayerHP;
+
+        // Set player's full deck from hex game
+        List<HexCard> fullDeck = transitionManager.PlayerFullDeck;
+        if (fullDeck != null && fullDeck.Count > 0)
+        {
+            player.fullDeck = new List<HexCard>(fullDeck);
+            Debug.Log($"<color=cyan>Loaded {fullDeck.Count} cards to player's full deck from hex game</color>");
+        }
+        else
+        {
+            Debug.LogWarning("<color=orange>No deck found from hex game! Player will use default deck.</color>");
+        }
+
+        // Set enemy stats from hex game (stored as primitives in transition manager)
+        enemyLevel = transitionManager.EnemyLevel;
+        enemyMaxHP = transitionManager.EnemyMaxHP;
+        enemyCurrentHP = enemyMaxHP;
+
+        Debug.Log($"<color=cyan>After assignment: enemyLevel={enemyLevel}, enemyMaxHP={enemyMaxHP}, enemyCurrentHP={enemyCurrentHP}</color>");
+        Debug.Log($"<color=cyan>==================================</color>");
+
+        // Show card selection UI with the player's deck from hex game
         ShowCardSelection();
     }
 
@@ -171,6 +216,8 @@ public class HexCardGameManager : MonoBehaviour
         enemyHPText.text = $"Enemy HP: {enemyCurrentHP}/{enemyMaxHP}";
         roundText.text = $"Round: {currentRound}/{maxRounds}";
         enemyStatsText.text = $"Enemy ATK: {enemyCurrentAttack} | DEF: {enemyCurrentDefense}";
+
+        Debug.Log($"<color=yellow>UpdateUI called: enemyCurrentHP={enemyCurrentHP}, enemyMaxHP={enemyMaxHP}</color>");
     }
 
     void EndGame(bool playerWon, bool isPartial)
@@ -200,6 +247,25 @@ public class HexCardGameManager : MonoBehaviour
                 gameOverText.text = "DEFEAT!\n\nYou have been defeated!";
             }
         }
+
+        // If combat was triggered from hex game, return to it after a delay
+        if (HexGame.CombatTransitionManager.Instance != null)
+        {
+            // Only complete victory (not partial) counts as winning in the hex game
+            bool completeVictory = playerWon && !isPartial;
+            Invoke(nameof(ReturnToHexGame), 2f);
+        }
+    }
+
+    void ReturnToHexGame()
+    {
+        bool completeVictory = gameOverText.text.Contains("COMPLETE VICTORY");
+
+        // Save player HP to transition manager so it can be restored in hex game
+        HexGame.CombatTransitionManager.Instance.PlayerHPAfterCombat = player.CurrentHP;
+        Debug.Log($"<color=cyan>Returning to hex game with player HP: {player.CurrentHP}</color>");
+
+        HexGame.CombatTransitionManager.Instance.EndCombat(completeVictory);
     }
 
     void RestartGame()
